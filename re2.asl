@@ -124,9 +124,10 @@ startup
     vars.LogsSave = SaveLogs;
 
     Action<string> DebugOutput = (text) => {
-        print("[Debug " + timer.CurrentTime.GameTime.ToString() + "]: " + text);
+        string log = "[Debug " + timer.CurrentTime.GameTime.ToString() + "]: " + text;
+        print(log);
         if (vars.logToFile)
-            SaveLogs(vars.logPath, text);
+            SaveLogs(vars.logPath, log);
     };
     vars.Log = DebugOutput;
 
@@ -810,11 +811,12 @@ split
     }
 
     // G2 Start
-    if (current.map == 335 && current.bossHP == 24000 && !vars.Splits.Contains("g2Start"))
+    if (current.map == 335 && current.bossCHP == 24000 && current.bossHP == 24000 && !vars.Splits.Contains("g2Start"))
         return LogAndSplit("g2Start");
 
     // G2 End
-    if (current.map == 335 && !(current.bossHP >= 1) && vars.Splits.Contains("g2Start") && !vars.Splits.Contains("g2"))
+    // G2 fight may end on boss 1HP instead of 0
+    if (current.map == 335 && current.bossCHP < 2 && current.bossHP == 24000 && vars.Splits.Contains("g2Start") && !vars.Splits.Contains("g2"))
         return LogAndSplit("g2");
 
     // G4 Start
@@ -864,7 +866,7 @@ split
         if (current.map == 423 && !vars.Splits.Contains("onTrain"))
             vars.Splits.Add("onTrain");
         
-        if (current.map == 0 && old.map == 330 && !vars.Splits.Contains("adaEnd"))
+        if (current.map == 0 && old.map == 330 && old.survivorType == 2 && current.survivorType != 2 && vars.Splits.Contains("adaStart") && !vars.Splits.Contains("adaEnd"))
             return LogAndSplit("adaEnd");
     }
 
