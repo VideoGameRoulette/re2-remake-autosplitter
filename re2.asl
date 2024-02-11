@@ -3,25 +3,8 @@
 //Last updated 08/26/2023
 //New Pointers by VideoGameRoulette & DeathHound
 
-state("re2", "World Public RT 2023")
-{
-    int gameStartType : "re2.exe", 0x091AE1F0, 0x54;
-    int scenerioTypeValue : "re2.exe", 0x091AE1F0, 0x1A0, 0x1C;
-    int survivorType : "re2.exe", 0x091AD2C0, 0x50, 0x10, 0x20, 0x54;
-    int playerCurrentHP : "re2.exe", 0x091AD2C0, 0x50, 0x10, 0x20, 0x230, 0x58;
-    int playerMaxHP : "re2.exe", 0x091AD2C0, 0x50, 0x10, 0x20, 0x230, 0x54;
-    int map : "re2.exe", 0x91A8074;
-    int loc : "re2.exe", 0x91A8070;
-    int bossCHP : "re2.exe", 0x091A6AF8, 0x58, 0x10, 0x20, 0x218, 0xB8, 0x58;
-    int bossHP : "re2.exe", 0x091A6AF8, 0x58, 0x10, 0x20, 0x218, 0xB8, 0x54;
-    byte isCutscene : "re2.exe", 0x091AED68, 0x51;
-    byte isPaused : "re2.exe", 0x091AED68, 0x53;
-    long active : "re2.exe", 0x091AED68, 0x60, 0x18;
-    long cutscene : "re2.exe", 0x091AED68, 0x60, 0x20;
-    long paused : "re2.exe", 0x091AED68, 0x60, 0x30;
-}
-
-state("re2", "World DX11 2023")
+// WW RELEASES
+state("re2", "World DX11 2023") // DX11
 {
     int gameStartType : "re2.exe", 0x070B9320, 0x54;
     int scenerioTypeValue : "re2.exe", 0x070B9320, 0x198, 0x1C;
@@ -30,8 +13,6 @@ state("re2", "World DX11 2023")
     int playerMaxHP : "re2.exe", 0x070AA850, 0x50, 0x10, 0x20, 0x230, 0x54;
     int map : "re2.exe", 0x070A7D84;
     int loc : "re2.exe", 0x070A7D80;
-    int bossCHP : "re2.exe", 0x070A69E0, 0x58, 0x10, 0x20, 0x218, 0xB8, 0x58;
-    int bossHP : "re2.exe", 0x070A69E0, 0x58, 0x10, 0x20, 0x218, 0xB8, 0x54;
     byte isCutscene : "re2.exe", 0x070AEBB8, 0x51;
     byte isPaused : "re2.exe", 0x070AEBB8, 0x53;
     int cutscene : "re2.exe", 0x070AEBB8, 0x51;
@@ -39,10 +20,26 @@ state("re2", "World DX11 2023")
     long cutscene : "re2.exe", 0x070AEBB8, 0x60, 0x20;
     long paused : "re2.exe", 0x070AEBB8, 0x60, 0x30;
 }
-
-state("re2", "Japanese DX11 2023")
+state("re2", "World DX12 2023") // DX12
 {
-    // Japanese pointers are the same was Worldwide
+    int gameStartType : "re2.exe", 0x091AE1F0, 0x54;
+    int scenerioTypeValue : "re2.exe", 0x091AE1F0, 0x1A0, 0x1C;
+    int survivorType : "re2.exe", 0x091AD2C0, 0x50, 0x10, 0x20, 0x54;
+    int playerCurrentHP : "re2.exe", 0x091AD2C0, 0x50, 0x10, 0x20, 0x230, 0x58;
+    int playerMaxHP : "re2.exe", 0x091AD2C0, 0x50, 0x10, 0x20, 0x230, 0x54;
+    int map : "re2.exe", 0x91A8074;
+    int loc : "re2.exe", 0x91A8070;
+    byte isCutscene : "re2.exe", 0x091AED68, 0x51;
+    byte isPaused : "re2.exe", 0x091AED68, 0x53;
+    long active : "re2.exe", 0x091AED68, 0x60, 0x18;
+    long cutscene : "re2.exe", 0x091AED68, 0x60, 0x20;
+    long paused : "re2.exe", 0x091AED68, 0x60, 0x30;
+}
+
+// CEROZ/JAPANESE RELEASES
+state("re2", "Japanese DX11 2023") // DX11
+{
+    // Japanese pointers are the same as Worldwide
     int gameStartType : "re2.exe", 0x70B9320, 0x54;
     int scenerioTypeValue : "re2.exe", 0x70B9320, 0x198, 0x1C;
     int survivorType : "re2.exe", 0x70AA850, 0x50, 0x10, 0x20, 0x54;
@@ -50,8 +47,6 @@ state("re2", "Japanese DX11 2023")
     int playerMaxHP : "re2.exe", 0x70AA850, 0x50, 0x10, 0x20, 0x230, 0x54;
     int map : "re2.exe", 0x070A7D84;
     int loc : "re2.exe", 0x070A7D80;
-    int bossCHP : "re2.exe", 0x70A69E0, 0x58, 0x10, 0x20, 0x218, 0xB8, 0x58;
-    int bossHP : "re2.exe", 0x70A69E0, 0x58, 0x10, 0x20, 0x218, 0xB8, 0x54;
     byte isCutscene : "re2.exe", 0x70AEBB8, 0x51;
     byte isPaused : "re2.exe", 0x70AEBB8, 0x53;
     int cutscene : "re2.exe", 0x70AEBB8, 0x51;
@@ -59,10 +54,9 @@ state("re2", "Japanese DX11 2023")
     long cutscene : "re2.exe", 0x70AEBB8, 0x60, 0x20;
     long paused : "re2.exe", 0x70AEBB8, 0x60, 0x30;
 }
-
-state ("re2", "Japanese DX12 2023")
+state ("re2", "Japanese DX12 2023") // DX12
 {
-    // Japanese pointers are the same was Worldwide
+    // Japanese pointers are the same as Worldwide
     int gameStartType : "re2.exe", 0x91AE1F0, 0x54;
     int scenerioTypeValue : "re2.exe", 0x91AE1F0, 0x198, 0x1C;
     int survivorType : "re2.exe", 0x91AD2C0, 0x50, 0x10, 0x20, 0x54;
@@ -70,8 +64,6 @@ state ("re2", "Japanese DX12 2023")
     int playerMaxHP : "re2.exe", 0x91AD2C0, 0x50, 0x10, 0x20, 0x230, 0x54;
     int map : "re2.exe", 0x91A8074;
     int loc : "re2.exe", 0x91A8070;
-    int bossCHP : "re2.exe", 0x91A6AF8, 0x58, 0x10, 0x20, 0x218, 0xB8, 0x58;
-    int bossHP : "re2.exe", 0x91A6AF8, 0x58, 0x10, 0x20, 0x218, 0xB8, 0x54;
     byte isCutscene : "re2.exe", 0x91AED68, 0x51;
     byte isPaused : "re2.exe", 0x91AED68, 0x53;
     int cutscene : "re2.exe", 0x91AED68, 0x51;
@@ -338,33 +330,35 @@ init
 {
     // Initialize Version
     vars.inventoryPtr = IntPtr.Zero;
+    vars.enemyListPtr = IntPtr.Zero;
 
     // Update Version Info and Inventory Pointer
-    Action<string, int> UpdateVersion = (ver, address) => {
+    Action<string, int, int> UpdateVersion = (ver, inventoryPtr, enemyListPtr) => {
         version = ver;
-        vars.inventoryPtr = address;
+        vars.inventoryPtr = inventoryPtr;
+        vars.enemyListPtr = enemyListPtr;
     };
 
     byte[] checksum = vars.CalcModuleHash(modules.First());
     if (Enumerable.SequenceEqual(checksum, vars.re2WW_11026357))
-        UpdateVersion("World Public RT 2023", 0x91A6DC0);
+        UpdateVersion("World Public RT 2023", 0x91A6DC0, 0x091A6AF8);
     else if (Enumerable.SequenceEqual(checksum, vars.re2WW_11055033))
-        UpdateVersion("World DX11 2023", 0x070B23A8);
+        UpdateVersion("World DX11 2023", 0x070B23A8, 0x070A69E0);
     else if (Enumerable.SequenceEqual(checksum, vars.re2JP_11055259))
-        UpdateVersion("Japanese DX11 2023", 0x70B23A8);
+        UpdateVersion("Japanese DX11 2023", 0x70B23A8, 0x070A69E0);
     else if (Enumerable.SequenceEqual(checksum, vars.re2JP_11636615))
-        UpdateVersion("Japanese DX12 2023", 0x91A6DC0);
+        UpdateVersion("Japanese DX12 2023", 0x91A6DC0, 0x091A6AF8);
     else
     {
         vars.LogsSave("re2Version.log", vars.OutputVersion(checksum));
-        UpdateVersion("Unknown", 0x0);
+        UpdateVersion("Unknown", 0x0, 0x0);
     }
 
     // Initialize Inventory 
     // Gets ItemID from given index of the array in game memory
     Func<int, int> GetItemID = (idx) => {
         int id = 0;
-        IntPtr ptr;
+        IntPtr ptr = IntPtr.Zero;
         new DeepPointer(vars.inventoryPtr, 0x58, 0x10, 0x20, 0x98, 0x10, 0x20 + (idx * 8), 0x18, 0x10, 0x10).DerefOffsets(memory, out ptr);
         memory.ReadValue<int>(ptr, out id);
         return id;
@@ -374,12 +368,45 @@ init
     // Gets WeaponID from given index of the array in game memory
     Func<int, int> GetWeaponID = (idx) => {
         int id = 0;
-        IntPtr ptr;
+        IntPtr ptr = IntPtr.Zero;
         new DeepPointer(vars.inventoryPtr, 0x58, 0x10, 0x20, 0x98, 0x10, 0x20 + (idx * 8), 0x18, 0x10, 0x14).DerefOffsets(memory, out ptr);
         memory.ReadValue<int>(ptr, out id);
         return id;
     };
     vars.GetWeaponID = GetWeaponID;
+
+    Func<string, int[]> GetBossHealth = (bossName) => {
+        Dictionary<string, int> bosses = new Dictionary<string, int>
+        {
+            {"G1", 5000},
+            {"G2", 24000},
+            {"G3", 15000},
+            {"G4", 3000000}, // 3 million HP
+            {"G5", 20000},
+            {"Tyrant", 1000000000} // 1 billion HP
+        };
+        int enemyCount = 0;
+        int currentHealth = 0;
+        int maxHealth = 0;
+        IntPtr ptr = IntPtr.Zero;
+        // Get count of loaded enemies
+        new DeepPointer(vars.enemyListPtr, 0x58, 0x18).DerefOffsets(memory, out ptr);
+        memory.ReadValue<int>(ptr, out enemyCount);
+        for (int idx = 0; idx < enemyCount; idx++)
+        {
+            new DeepPointer(vars.enemyListPtr, 0x58, 0x10, 0x20 + (idx * 8), 0x218, 0xB8, 0x54).DerefOffsets(memory, out ptr);
+            memory.ReadValue<int>(ptr, out maxHealth);
+            // We found the right boss, grab current health and break out
+            if (bosses[bossName] == maxHealth) {
+                new DeepPointer(vars.enemyListPtr, 0x58, 0x10, 0x20 + (idx * 8), 0x218, 0xB8, 0x58).DerefOffsets(memory, out ptr);
+                memory.ReadValue<int>(ptr, out currentHealth);
+                break;
+            }
+            maxHealth = 0;
+        }
+        return new int[] { currentHealth, maxHealth };
+    };
+    vars.GetBossHealth = GetBossHealth;
 }
 
 start
@@ -810,17 +837,25 @@ split
         }
     }
 
+    // Health lists are [current, max]
+    int[] g1HP = vars.GetBossHealth("G1");
+    int[] g2HP = vars.GetBossHealth("G2");
+    int[] g3HP = vars.GetBossHealth("G3");
+    int[] g4HP = vars.GetBossHealth("G4");
+    int[] g5HP = vars.GetBossHealth("G5");
+    int[] tyrantHP = vars.GetBossHealth("Tyrant");
+
     // G2 Start
-    if (current.map == 335 && current.bossCHP == 24000 && current.bossHP == 24000 && !vars.Splits.Contains("g2Start"))
+    if (current.map == 335 && g2HP[0] == 24000 && g2HP[1] == 24000 && !vars.Splits.Contains("g2Start"))
         return LogAndSplit("g2Start");
 
     // G2 End
     // G2 fight may end on boss 1HP instead of 0
-    if (current.map == 335 && current.bossCHP < 2 && current.bossHP == 24000 && vars.Splits.Contains("g2Start") && !vars.Splits.Contains("g2"))
+    if (current.map == 335 && g2HP[0] < 2 && g2HP[1] == 24000 && vars.Splits.Contains("g2Start") && !vars.Splits.Contains("g2"))
         return LogAndSplit("g2");
 
     // G4 Start
-    if (current.map == 421 && current.bossHP >= 3000000 && !vars.Splits.Contains("g4Start"))
+    if (current.map == 421 && g4HP[1] >= 3000000 && !vars.Splits.Contains("g4Start"))
         return LogAndSplit("g4Start");
 
     // G4 End and Alt Ending
@@ -880,25 +915,25 @@ split
     // Cutscene Playing
     if (current.isCutscene == 1)
     {
-        if (current.map == 353 && !vars.Splits.Contains("reachedG1") && current.bossCHP == 5000 && current.bossHP == 5000)
+        if (current.map == 353 && !vars.Splits.Contains("reachedG1") && g1HP[0] == 5000 && g1HP[1] == 5000)
             vars.Splits.Add("reachedG1");
-        if (current.map == 419 && !vars.Splits.Contains("reachedG3") && current.bossCHP == 15000 && current.bossHP == 15000)
+        if (current.map == 419 && !vars.Splits.Contains("reachedG3") && g3HP[0] == 15000 && g3HP[1] == 15000)
             vars.Splits.Add("reachedG3");
     }
 
     // Cutscene Skipped
     if (current.isCutscene == 0 && old.isCutscene == 1 && current.isPaused == 0)
     {
-        if (current.map == 353 && vars.Splits.Contains("reachedG1") && !vars.Splits.Contains("g1Start") && current.bossCHP == 5000 && current.bossHP == 5000)
+        if (current.map == 353 && vars.Splits.Contains("reachedG1") && !vars.Splits.Contains("g1Start") && g1HP[0] == 5000 && g1HP[1] == 5000)
             return LogAndSplit("g1Start");
-        if (current.map == 419 && vars.Splits.Contains("reachedG3") && !vars.Splits.Contains("g3Start") && current.bossCHP == 15000 && current.bossHP == 15000)
+        if (current.map == 419 && vars.Splits.Contains("reachedG3") && !vars.Splits.Contains("g3Start") && g3HP[0] == 15000 && g3HP[1] == 15000)
             return LogAndSplit("g3Start");
     }
     else if (current.isCutscene == 1 && old.isCutscene == 0)
     {
-        if (current.map == 353 && current.bossCHP == 0 && current.bossHP == 5000 && vars.Splits.Contains("g1Start") && !vars.Splits.Contains("g1"))
+        if (current.map == 353 && g1HP[0] == 0 && g1HP[1] == 50000 && vars.Splits.Contains("g1Start") && !vars.Splits.Contains("g1"))
             return LogAndSplit("g1");
-        if (current.map == 419 && current.bossCHP == 0 && current.bossHP == 15000 && vars.Splits.Contains("g3Start") && !vars.Splits.Contains("g3"))
+        if (current.map == 419 && g3HP[0] == 0 && g3HP[1] == 15000 && vars.Splits.Contains("g3Start") && !vars.Splits.Contains("g3"))
             return LogAndSplit("g3");
     }
 }
