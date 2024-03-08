@@ -105,7 +105,7 @@ startup
     };
 
     Action<string, bool, string, string, string> initSettingGroupOption = (key, enabled, title, group, description) => {
-        settings.Add(key, enabled, title, group);
+        settings.Add(key, true, title, group);
         settings.SetToolTip(key, description);
     };
 
@@ -155,7 +155,7 @@ startup
     vars.OutputVersion = OutputVersionString;
 
     Func<ProcessModuleWow64Safe, byte[]> CalcModuleHash = (module) => {
-        vars.Log("Calcuating hash of " + module.FileName);
+        vars.Log("Calcuating hash of "+module.FileName);
         byte[] checksum = new byte[32];
         using (var hashFunc = System.Security.Cryptography.SHA256.Create())
             using (var fs = new FileStream(module.FileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite | FileShare.Delete))
@@ -437,8 +437,11 @@ update
     if (current.gameStartType != old.gameStartType)
         vars.Log("Game Start Type Set To " + vars.GetStartType[current.gameStartType]);
 
+    if (current.map != old.map)
+        vars.Log("Map ID Set To " + current.map);
+
     if (current.loc != old.loc)
-        vars.Log("Location ID Set To " + current.loc);
+        vars.Log("Location ID Set To " + current.loc + " Map ID Set To " + current.map);
 
     if (current.map != old.map)
         vars.Log("Map ID Set To " + current.map);
@@ -474,25 +477,335 @@ split
     for (int i = 0; i < currentInventory.Length; i++)
     {
         // Weapon splits
-        if (currentWeapons[i] != oldWeapons[i] && vars.WeaponID.ContainsKey(currentWeapons[i]))
+        if (currentWeapons[i] != oldWeapons[i])
         {
-            string weapon = vars.WeaponID[currentWeapons[i]];
-            if (!vars.Splits.Contains(weapon))
-                return LogAndSplit(weapon);
+            switch (currentWeapons[i])
+            {
+                case 0x0000000B:
+                {
+                    if (!vars.Splits.Contains("shotgun"))
+                        return LogAndSplit("shotgun");
+                    break;
+                }
+                case 0x0000002A:
+                {
+                    if (!vars.Splits.Contains("gL"))
+                        return LogAndSplit("gL");
+                    break;
+                }
+                default:
+                {
+                    break; // No work to do.
+                }
+            }
         }
 
         // Item splits
-        if (currentInventory[i] != oldInventory[i] && vars.ItemID.ContainsKey[currentInventory[i]])
+        if (currentInventory[i] != oldInventory[i])
         {
-            string item = vars.ItemID[currentInventory[i]];
-            if (!vars.Splits.Contains(item))
+            switch (currentInventory[i])
             {
-                // If item is generalChipAda and character is not Ada OR
-                // If item is generalChip and character is not Claire and is not Leon
-                if ((currentInventory[i] == 0xC3 && current.survivorType != 2) || // general chip ada
-                    (currentInventory[i] == 0xC8 && !(current.survivorType == 0 || current.survivorType == 1))) // general chip
-                    return false;
-                return LogAndSplit(item);
+                case 0x0000001F:
+                {
+                    if (!vars.Splits.Contains("detonator"))
+                        return LogAndSplit("detonator");
+                    break;
+                }
+                case 0x00000022:
+                {
+                    if (!vars.Splits.Contains("emptyDetonator"))
+                        return LogAndSplit("emptyDetonator");
+                    break;
+                }
+                case 0x0000004D:
+                {
+                    if (!vars.Splits.Contains("storageKey"))
+                        return LogAndSplit("storageKey");
+                    break;
+                }
+                case 0x0000004F:
+                {
+                    if (!vars.Splits.Contains("mechanicHandle"))
+                        return LogAndSplit("mechanicHandle");
+                    break;
+                }
+                case 0x00000050:
+                {
+                    if (!vars.Splits.Contains("squareCrank"))
+                        return LogAndSplit("squareCrank");
+                    break;
+                }
+                case 0x00000051:
+                {
+                    if (!vars.Splits.Contains("unicorn"))
+                        return LogAndSplit("unicorn");
+                    break;
+                }
+                case 0x00000076:
+                {
+                    if (!vars.Splits.Contains("lion"))
+                        return LogAndSplit("lion");
+                    break;
+                }
+                case 0x0000007C:
+                {
+                    if (!vars.Splits.Contains("maiden"))
+                        return LogAndSplit("maiden");
+                    break;
+                }
+                case 0x00000052:
+                {
+                    if (!vars.Splits.Contains("spade"))
+                        return LogAndSplit("spade");
+                    break;
+                }
+                case 0x00000053:
+                {
+                    if (!vars.Splits.Contains("parkingcard"))
+                        return LogAndSplit("parkingcard");
+                    break;
+                }
+                case 0x00000054:
+                {
+                    if (!vars.Splits.Contains("weaponcard"))
+                        return LogAndSplit("weaponcard");
+                    break;
+                }
+                case 0x00000056:
+                {
+                    if (!vars.Splits.Contains("valve"))
+                        return LogAndSplit("valve");
+                    break;
+                }
+                case 0x00000057:
+                {
+                    if (!vars.Splits.Contains("starsbadge"))
+                        return LogAndSplit("starsbadge");
+                    break;
+                }
+                case 0x00000058:
+                {
+                    if (!vars.Splits.Contains("scepter"))
+                        return LogAndSplit("scepter");
+                    break;
+                }
+                case 0x0000005A:
+                {
+                    if (!vars.Splits.Contains("jewel"))
+                        return LogAndSplit("jewel");
+                    break;
+                }
+                case 0x0000005B:
+                {
+                    if (!vars.Splits.Contains("jewelbox"))
+                        return LogAndSplit("jewelbox");
+                    break;
+                }
+                case 0x0000005E:
+                {
+                    if (!vars.Splits.Contains("rook"))
+                        return LogAndSplit("rook");
+                    break;
+                }
+                case 0x0000005F:
+                {
+                    if (!vars.Splits.Contains("king"))
+                        return LogAndSplit("king");
+                    break;
+                }
+                case 0x00000084:
+                {
+                    if (!vars.Splits.Contains("knight"))
+                        return LogAndSplit("knight");
+                    break;
+                }
+                case 0x00000086:
+                {
+                    if (!vars.Splits.Contains("queen"))
+                        return LogAndSplit("queen");
+                    break;
+                }
+                case 0x0000005D:
+                {
+                    if (!vars.Splits.Contains("bishop"))
+                        return LogAndSplit("bishop");
+                    break;
+                }
+                case 0x00000062:
+                {
+                    if (!vars.Splits.Contains("block"))
+                        return LogAndSplit("block");
+                    break;
+                }
+                case 0x00000072:
+                {
+                    if (!vars.Splits.Contains("redbook"))
+                        return LogAndSplit("redbook");
+                    break;
+                }
+                case 0x00000073:
+                {
+                    if (!vars.Splits.Contains("arm"))
+                        return LogAndSplit("arm");
+                    break;
+                }
+                case 0x00000077:
+                {
+                    if (!vars.Splits.Contains("diamond"))
+                        return LogAndSplit("diamond");
+                    break;
+                }
+                case 0x00000078:
+                {
+                    if (!vars.Splits.Contains("carkey"))
+                        return LogAndSplit("carkey");
+                    break;
+                }
+                case 0x00000087:
+                {
+                    if (!vars.Splits.Contains("partA"))
+                        return LogAndSplit("partA");
+                    break;
+                }
+                case 0x00000088:
+                {
+                    if (!vars.Splits.Contains("partB"))
+                        return LogAndSplit("partB");
+                    break;
+                }
+                case 0x00000081:
+                {
+                    if (!vars.Splits.Contains("smallgear"))
+                        return LogAndSplit("smallgear");
+                    break;
+                }
+                case 0x00000082:
+                {
+                    if (!vars.Splits.Contains("largegear"))
+                        return LogAndSplit("largegear");
+                    break;
+                }
+                case 0x00000083:
+                {
+                    if (!vars.Splits.Contains("courtyardkey"))
+                        return LogAndSplit("courtyardkey");
+                    break;
+                }
+                case 0x0000009F:
+                {
+                    if (!vars.Splits.Contains("orphanageKey"))
+                        return LogAndSplit("orphanageKey");
+                    break;
+                }
+                case 0x000000A0:
+                {
+                    if (!vars.Splits.Contains("club"))
+                        return LogAndSplit("club");
+                    break;
+                }
+                case 0x000000A9:
+                {
+                    if (!vars.Splits.Contains("heart"))
+                        return LogAndSplit("heart");
+                    break;
+                }
+                case 0x000000B0:
+                {
+                    if (!vars.Splits.Contains("tbar"))
+                        return LogAndSplit("tbar");
+                    break;
+                }
+                case 0x000000B3:
+                {
+                    if (!vars.Splits.Contains("dispenseEmpty"))
+                        return LogAndSplit("dispenseEmpty");
+                    break;
+                }
+                case 0x000000B4:
+                {
+                    if (!vars.Splits.Contains("dispenseSolution"))
+                        return LogAndSplit("dispenseSolution"); 
+                    break;
+                }
+                case 0x000000B5:
+                {
+                    if (!vars.Splits.Contains("herbicide"))
+                        return LogAndSplit("herbicide");
+                    break;
+                }
+                case 0x000000B7:
+                {
+                    if (!vars.Splits.Contains("jointPlug"))
+                        return LogAndSplit("jointPlug");
+                    break;
+                }
+                case 0x000000BB:
+                {
+                    if (!vars.Splits.Contains("chipAdmin"))
+                        return LogAndSplit("chipAdmin");
+                    break;
+                }
+                case 0x000000BD:
+                {
+                    if (!vars.Splits.Contains("modulator"))
+                        return LogAndSplit("modulator");
+                    break;
+                }
+                case 0x000000C2:
+                {
+                    if (!vars.Splits.Contains("sewerKey"))
+                        return LogAndSplit("sewerKey");
+                    break;
+                }
+                case 0x000000C3:
+                case 0x000000C8:
+                {
+                    if (!vars.Splits.Contains("generalChipAda") && current.survivorType == 2)
+                        return LogAndSplit("generalChipAda");
+                    if (!vars.Splits.Contains("generalChipMain") && (current.survivorType == 0 || current.survivorType == 1))
+                        return LogAndSplit("generalChipMain");
+                    break;
+                }
+                case 0x000000C4:
+                case 0x000000C9:
+                {
+                    if (!vars.Splits.Contains("staffChip"))
+                        return LogAndSplit("staffChip");
+                    break;
+                }
+                case 0x000000C5:
+                case 0x000000CA:
+                {
+                    if (!vars.Splits.Contains("seniorChip"))
+                        return LogAndSplit("seniorChip");
+                    break;
+                }
+                case 0x000000F0:
+                {
+                    if (!vars.Splits.Contains("fuse1"))
+                        return LogAndSplit("fuse1");
+                    break;
+                }
+                case 0x000000F1:
+                {
+                    if (!vars.Splits.Contains("fuse2"))
+                        return LogAndSplit("fuse2");
+                    break;
+                }
+                case 0x000000F3:
+                {
+                    if (!vars.Splits.Contains("scissors"))
+                        return LogAndSplit("scissors");
+                    break;
+                }
+                case 0x000000F4:
+                    if (!vars.Splits.Contains("boltCutters"))
+                        return LogAndSplit("boltCutters");
+                    break;
+                default:
+                {
+                    break; // No work to do.
+                }
             }
         }
     }
@@ -510,13 +823,14 @@ split
     if (current.map == 421 && current.bossHP >= 3000000 && !vars.Splits.Contains("g4Start"))
         return LogAndSplit("g4Start");
 
-    // G4 End and Super Tyrant Ending
+    // G4 End and Alt Ending
     bool isG4Ending = current.isCutscene == 1 && current.map == 421 && vars.Splits.Contains("g4Start") && !vars.Splits.Contains("endA");
     bool isTyrantEnding = current.isCutscene == 1 && current.map == 422 && !vars.Splits.Contains("endA");
     if (isG4Ending || isTyrantEnding)
         return LogAndSplit("endA");
 
     // True Ending - G5
+    //bool isSTyrantEnding = old.map == 422 && current.map == 422 && current.isCutscene == 1 && vars.Splits.Contains("end") && !vars.Splits.Contains("endB");
     bool isG5Ending = current.map == 421 && old.map == 423 && current.isCutscene == 1 && (vars.Splits.Contains("onTrain") || vars.Splits.Contains("endA")) && !vars.Splits.Contains("endB");
     if (isG5Ending)
         return LogAndSplit("endB");
@@ -552,9 +866,7 @@ split
         if (current.map == 423 && !vars.Splits.Contains("onTrain"))
             vars.Splits.Add("onTrain");
         
-        if (((current.map == 0 && old.map == 330 && current.survivorType == 2) || // if in ada "spotlight" cutscene
-            (current.map == 310 && old.map == 0 && old.survivorType == 2 && current.survivorType != 2)) && // if returning to leon
-            vars.Splits.Contains("adaStart") && !vars.Splits.Contains("adaEnd"))
+        if (current.map == 0 && old.map == 330 && old.survivorType == 2 && current.survivorType != 2 && vars.Splits.Contains("adaStart") && !vars.Splits.Contains("adaEnd"))
             return LogAndSplit("adaEnd");
     }
 
